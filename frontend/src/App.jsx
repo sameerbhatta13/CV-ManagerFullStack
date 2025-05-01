@@ -1,12 +1,17 @@
 import React from 'react'
 import './App.css'
 
+import MyRoutes from '../MyRoutes'
+
+
+
+
 function App() {
 
 
   return (
     <>
-      <h1>helo form css</h1>
+      <MyRoutes />
     </>
   )
 }
