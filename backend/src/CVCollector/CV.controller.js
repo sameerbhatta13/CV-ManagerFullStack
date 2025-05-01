@@ -10,6 +10,13 @@ exports.postCV = asyncHandler(async (req, res) => {
 
     const { name, phone, email, technology, level, salaryExp, experience, reference } = req.body
 
+
+    //find if already exist
+    const cvList = await CV.findOne({ email })
+    if (cvList) {
+        throw new ApiError('email with this cv is already exits', 400)
+    }
+
     let cv = new CV({
         name,
         phone,
@@ -19,8 +26,10 @@ exports.postCV = asyncHandler(async (req, res) => {
         salaryExp,
         experience,
         reference,
-        file: req.file.filename
+        file: req.file?.filename || null //for safety
     })
+
+
     await cv.save()
     res.status(200).json(new ApiResponse('cv collected successfully', cv))
 })
