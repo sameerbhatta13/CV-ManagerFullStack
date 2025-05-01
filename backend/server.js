@@ -19,5 +19,5 @@ app.use('/api', cvRoute)
 
 
 app.listen(port, () => {
-    console.log(`server is connected at :${port}`)
+    console.log(`server is running at :${port}`)
 })
