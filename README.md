@@ -7,5 +7,5 @@ React + Vite
 `5` to change candidate status (either selected, rejected, etc)
 
 # Features
-`1` Using material Ui
+`1` Using material Ui <br>
 `2` automate email scheduling
