@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from '@mui/material'
+import axios from 'axios'
+import { api_url } from '../../config'
 
 const InputForm = () => {
 
@@ -17,7 +19,16 @@ const InputForm = () => {
     const [prevImg, setPrevImg] = useState(null)
 
 
-    const handlesubmit = (e) => {
+    const handlesubmit = async (e) => {
+        e.preventDefault()
+        const formData = new FormData()
+
+        try {
+            const res = await axios.post(`${api_url}/cv`)
+
+        } catch (error) {
+
+        }
 
     }
     const handleChange = (e) => {
