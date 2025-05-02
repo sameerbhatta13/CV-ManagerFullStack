@@ -29,7 +29,7 @@ const cvSchema = new mongoose.Schema({
         required: true
     },
     experience: {
-        type: Number,
+        type: String,
         required: true
     },
     reference: {
@@ -42,13 +42,17 @@ const cvSchema = new mongoose.Schema({
     },
     applicationStatus: {
         type: String,
-        enum: ["Active", "shortlisted", "First Interview complete", "Second Interview complete", " Hired", "Rejected"],
+        enum: ["active", "shortlisted", "First Interview complete", "Second Interview complete", " Hired", "Rejected"],
         default: "Active",
         trim: true
     },
     assessment: {
         type: String,
+    },
+    remarks: {
+        type: String
     }
+
 
 
 }, { timestamps: true })

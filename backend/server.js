@@ -7,6 +7,7 @@ require('./DB/connection')
 //routes import
 const cvRoute = require('./src/CVCollector/CV.routes')
 const interviewerRoute = require('./src/Interviewer/Interviewer.routes')
+const interviewRoute = require('./src/Interview/Interview.routes')
 
 const app = express()
 let port = process.env.PORT
@@ -20,12 +21,14 @@ app.use(cors({
 //middleware
 // app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
-app.use('api/image', express.static('public/uploads'))
+app.use('/api/image', express.static('public/uploads'))
 
 
 //routes middleware
 app.use('/api', cvRoute)
 app.use('/api', interviewerRoute)
+app.use('/api', interviewRoute)
+
 
 
 app.listen(port, () => {
