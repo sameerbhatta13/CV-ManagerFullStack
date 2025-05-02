@@ -6,9 +6,11 @@ import axios from 'axios'
 
 const ModalUI = ({ setOpen, open, selectedRow }) => {
     const [list, setList] = useState([])
+    const [id, setId] = useState()
+
 
     const [interview, setInterview] = useState({
-        interviewer: '',
+        interviewer: id,
         date: '',
         time: '',
         candidate: selectedRow._id
@@ -74,11 +76,11 @@ const ModalUI = ({ setOpen, open, selectedRow }) => {
                         <div className='flex flex-col my-5'>
                             <h1 className='text-2xl underline text-red-400'>First Interview</h1>
                             <label htmlFor="" className='font-bold my-3'>Select Interviewer</label>
-                            <select className='border-2 p-2' name=''>
+                            <select className='border-2 p-2' name='interviewer' onChange={(e) => setId(e.target.value)}>
                                 <option value="" disabled selected>choose one</option>
                                 {
                                     list?.data?.map((item, index) => (
-                                        <option value="" key={index}>{item.name}    </option>
+                                        <option value={item?._id} key={index}>{item?.name}</option>
 
                                     ))
                                 }
