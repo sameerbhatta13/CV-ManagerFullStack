@@ -65,9 +65,9 @@ const Status = () => {
         },
         {
             field: 'action', headerName: 'Actions', width: 200,
-            renderCell: (params) => (
-                <Button startIcon={<ThumbDownIcon sx={{ color: 'red' }} />}></Button>
-            )
+            // renderCell: (params) => (
+            //     <Button startIcon={<ThumbDownIcon sx={{ color: 'red' }} />}></Button>
+            // )
         }
 
     ]
