@@ -42,7 +42,7 @@ const cvSchema = new mongoose.Schema({
     },
     applicationStatus: {
         type: String,
-        enum: ["active", "shortlisted", "First Interview complete", "Second Interview complete", " Hired", "Rejected"],
+        enum: ["Active", "shortlisted", "First Interview complete", "Second Interview complete", " Hired", "Rejected"],
         default: "Active",
         trim: true
     },

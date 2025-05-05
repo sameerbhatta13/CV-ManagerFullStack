@@ -11,6 +11,7 @@ exports.postInterviewer = asyncHandler(async (req, res) => {
         position,
         department
     })
+
     await list.save()
 
     res.status(200).json(new ApiResponse('interviewer added successfully', list))

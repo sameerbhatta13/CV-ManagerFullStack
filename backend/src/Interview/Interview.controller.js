@@ -22,6 +22,10 @@ exports.postInterview = asyncHandler(async (req, res) => {
         interviewAt: combinedDate,
         candidate
     })
+
+    await CV.findOneAndUpdate({ _id: candidate }, {
+        applicationStatus: 'shortlisted'
+    }, { new: true })
     await interview.save()
 
     res.status(200).json(new ApiResponse('interview is scheduled', interview))
