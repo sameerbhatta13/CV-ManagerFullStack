@@ -11,14 +11,19 @@ import ModalUI from '@/materialUI/ModalUI'
 const Status = () => {
     const [cvlist, setCVList] = useState([])
     const [changeStatus, setChangeStatus] = useState('')
-    const [activeStatus, setActiveStatus] = useState('All')
+    const [activeStatus, setActiveStatus] = useState('Active')
     const [open, setOpen] = useState(false)
     const [selectedRow, setSelectedRow] = useState(null)
     const row = cvlist?.data
 
-    const status = ['All', 'shortlisted', 'interviewed', 'Hired', 'Rejected']
+    const rowData = row?.filter((item) => {
+        return item?.applicationStatus === activeStatus
+    })
+
+
+    const status = ['Active', 'shortlisted', 'interviewed', 'Hired', 'Rejected']
     const color = {
-        All: '#4caf50',
+        Active: '#4caf50',
         shortlisted: '#2196f3',
         interviewed: '#ff9800',
         Hired: '#9c27b0',
@@ -93,20 +98,20 @@ const Status = () => {
                 }
             </div>
             <div>
-                {cvlist?.status === 'Active' &&
-                    <Paper>
-                        <DataGrid
-                            rows={row}
-                            disableColumnMenu
-                            disableColumnFilter
-                            columns={columns}
-                            getRowId={(rows) => rows._id}
-                            pageSizeOptions={[5, 10]}
-                            initialState={{ pagination: { paginationModel: { page: 0, pageSize: 5 } } }}
-                            sx={{ border: 0 }}
-                        />
-                    </Paper>
-                }
+
+                <Paper>
+                    <DataGrid
+                        rows={rowData}
+                        disableColumnMenu
+                        disableColumnFilter
+                        columns={columns}
+                        getRowId={(rows) => rows._id}
+                        pageSizeOptions={[5, 10]}
+                        initialState={{ pagination: { paginationModel: { page: 0, pageSize: 5 } } }}
+                        sx={{ border: 0 }}
+                    />
+                </Paper>
+
 
 
             </div>
