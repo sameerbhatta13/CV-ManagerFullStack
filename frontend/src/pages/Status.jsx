@@ -10,7 +10,6 @@ import ModalUI from '@/materialUI/ModalUI'
 
 const Status = () => {
     const [cvlist, setCVList] = useState([])
-    const [changeStatus, setChangeStatus] = useState('')
     const [activeStatus, setActiveStatus] = useState('Active')
     const [open, setOpen] = useState(false)
     const [selectedRow, setSelectedRow] = useState(null)
@@ -37,7 +36,6 @@ const Status = () => {
         } catch (error) {
         }
     }
-
 
     const columns = [
         { field: 'name', headerName: 'name', width: 180, },
@@ -81,7 +79,6 @@ const Status = () => {
             <h1 className='text-2xl'>Candidate Application Status</h1>
 
             <div className='my-4 flex flex-row gap-5 m-2' >
-
                 {
                     status.map((status) => (
                         <Button key={status} variant={activeStatus ? 'contained' : 'outlined'}
@@ -112,7 +109,6 @@ const Status = () => {
                     />
                 </Paper>
             </div>
-
             {
                 open && (
                     <ModalUI setOpen={setOpen} open={open} selectedRow={selectedRow} />
@@ -121,5 +117,6 @@ const Status = () => {
         </div>
     )
 }
+
 
 export default Status
