@@ -19,7 +19,7 @@ exports.postInterviewer = asyncHandler(async (req, res) => {
 })
 
 exports.getInterviewer = asyncHandler(async (req, res) => {
-    const list = await Interviewer.find().populate('interviewer')
+    const list = await Interviewer.find()
     if (!list) {
         throw new ApiError('interviewer not available', 400)
     }

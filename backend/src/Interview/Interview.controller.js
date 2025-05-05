@@ -33,6 +33,8 @@ exports.postInterview = asyncHandler(async (req, res) => {
 
 exports.getallInterview = asyncHandler(async (req, res) => {
     const interviewList = await Interview.find()
+        .populate('interviewer', 'name position -_id')
+        .populate('candidate', 'name email technology  -_id')
 
     if (!interviewList) {
         throw new ApiError('no list of item available', 400)
