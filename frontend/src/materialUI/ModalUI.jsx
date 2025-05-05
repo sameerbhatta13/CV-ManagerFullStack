@@ -8,7 +8,6 @@ const ModalUI = ({ setOpen, open, selectedRow }) => {
     const [list, setList] = useState([])
     const [id, setId] = useState()
 
-
     const [interview, setInterview] = useState({
         interviewer: id,
         date: '',
@@ -16,7 +15,7 @@ const ModalUI = ({ setOpen, open, selectedRow }) => {
         candidate: selectedRow._id
     })
     const handelChange = (e) => {
-        const [name, value] = e.target
+        const { name, value } = e.target
         setInterview((prev) => ({
             ...prev,
             [name]: value
@@ -43,7 +42,6 @@ const ModalUI = ({ setOpen, open, selectedRow }) => {
     }
     useEffect(() => {
         fetchInterviewer()
-        postInteview()
     }, [])
 
     const style = {
@@ -75,27 +73,28 @@ const ModalUI = ({ setOpen, open, selectedRow }) => {
                     <Box sx={{ ...style, width: 400 }}>
                         <div className='flex flex-col my-5'>
                             <h1 className='text-2xl underline text-red-400'>First Interview</h1>
-                            <label htmlFor="" className='font-bold my-3'>Select Interviewer</label>
-                            <select className='border-2 p-2' name='interviewer' onChange={(e) => setId(e.target.value)}>
-                                <option value="" disabled selected>choose one</option>
-                                {
-                                    list?.data?.map((item, index) => (
-                                        <option value={item?._id} key={index}>{item?.name}</option>
+                            <form action="" onSubmit={postInteview} className='flex flex-col'>
+                                <label htmlFor="" className='font-bold my-3'>Select Interviewer</label>
+                                <select className='border-2 p-2' name='interviewer' onChange={handelChange}>
+                                    <option value="" disabled selected>choose one</option>
+                                    {
+                                        list?.data?.map((item, index) => (
+                                            <option value={item?._id} key={index}>{item?.name}</option>
 
-                                    ))
-                                }
-                            </select>
+                                        ))
+                                    }
+                                </select>
 
-                            <label htmlFor="" className='my-3 font-bold'>Interview Date</label>
-                            <input type="date" name='date' className='border-2 p-2' onChange={handelChange} />
+                                <label htmlFor="" className='my-3 font-bold'>Interview Date</label>
+                                <input type="date" name='date' className='border-2 p-2' onChange={handelChange} />
 
-                            <label htmlFor="" className='my-3 font-bold'>Interview Time</label>
-                            <input type="time" name='time' className='border-2 p-2' onChange={handelChange} />
+                                <label htmlFor="" className='my-3 font-bold'>Interview Time</label>
+                                <input type="time" name='time' className='border-2 p-2' onChange={handelChange} />
 
-                            <div className='my-4'>
-                                <Button type='submit' variant='contained' >Submit</Button>
-                            </div>
-
+                                <div className='my-4'>
+                                    <Button type='submit' variant='contained' >Submit</Button>
+                                </div>
+                            </form>
                         </div>
 
                     </Box>

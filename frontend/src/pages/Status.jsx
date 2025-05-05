@@ -33,16 +33,7 @@ const Status = () => {
         }
     }
 
-    const updateCv = async () => {
-        console.log('first', changeStatus)
-        try {
-            const res = await axios.put(`${api_url}/cv`, { applicationStatus: changeStatus })
-            const response = await res.data
 
-        } catch (error) {
-            console.log('error', error)
-        }
-    }
     const columns = [
         { field: 'name', headerName: 'name', width: 180, },
         { field: 'phone', headerName: 'phone', width: 200 },
@@ -102,18 +93,21 @@ const Status = () => {
                 }
             </div>
             <div>
-                <Paper>
-                    <DataGrid
-                        rows={row}
-                        disableColumnMenu
-                        disableColumnFilter
-                        columns={columns}
-                        getRowId={(rows) => rows._id}
-                        pageSizeOptions={[5, 10]}
-                        initialState={{ pagination: { paginationModel: { page: 0, pageSize: 5 } } }}
-                        sx={{ border: 0 }}
-                    />
-                </Paper>
+                {cvlist?.status === 'Active' &&
+                    <Paper>
+                        <DataGrid
+                            rows={row}
+                            disableColumnMenu
+                            disableColumnFilter
+                            columns={columns}
+                            getRowId={(rows) => rows._id}
+                            pageSizeOptions={[5, 10]}
+                            initialState={{ pagination: { paginationModel: { page: 0, pageSize: 5 } } }}
+                            sx={{ border: 0 }}
+                        />
+                    </Paper>
+                }
+
 
             </div>
 
