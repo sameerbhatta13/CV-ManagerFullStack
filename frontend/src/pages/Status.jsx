@@ -111,9 +111,6 @@ const Status = () => {
                         sx={{ border: 0 }}
                     />
                 </Paper>
-
-
-
             </div>
 
             {
