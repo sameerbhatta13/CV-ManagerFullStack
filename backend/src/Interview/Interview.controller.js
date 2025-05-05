@@ -40,5 +40,4 @@ exports.getallInterview = asyncHandler(async (req, res) => {
         throw new ApiError('no list of item available', 400)
     }
     res.status(200).json(new ApiResponse('here is list of scheduled interview', interviewList))
-
 })
