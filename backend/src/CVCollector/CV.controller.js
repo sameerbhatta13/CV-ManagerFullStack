@@ -59,3 +59,13 @@ exports.updateCV = asyncHandler(async (req, res) => {
         res.status('200').json(new ApiResponse('cv is updated successfully', data))
     }
 })
+
+exports.getCVByStatus = asyncHandler(async (req, res) => {
+    const { applicationStatus } = req.query
+
+    const cvlist = await CV.find({ applicationStatus: applicationStatus })
+    if (!cvlist && cvlist.length === 0) {
+        throw new ApiError('no cv with this application status')
+    }
+    res.send(cvlist)
+})
