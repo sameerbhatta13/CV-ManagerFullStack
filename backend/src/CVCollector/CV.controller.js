@@ -48,16 +48,23 @@ exports.updateCV = asyncHandler(async (req, res) => {
     if (req.file) {
         const file = req.file.filename
         const data = await CV.findByIdAndUpdate(req.params.id, {
-            ...req.body, file: file
+            ...req.body, assessment: file
         }, { new: true })
         res.status(200).json(new ApiResponse('cv is updated successfully', data))
     }
+
     else {
         const data = await CV.findByIdAndUpdate(req.params.id, { ...req.body }, {
             new: true
         })
         res.status(200).json(new ApiResponse('cv is updated successfully', data))
     }
+
+    await CV.updateOne({ assessment: { $ne: null } },
+        {
+            $set: { applicationStatus: 'First Interview' }
+        }
+    )
 })
 
 exports.getCVByStatus = asyncHandler(async (req, res) => {
