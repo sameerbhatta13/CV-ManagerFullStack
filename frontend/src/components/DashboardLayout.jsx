@@ -1,12 +1,18 @@
 import HomePage from '@/pages/HomePage'
-import { Drawer, ListItem, ListItemText, Toolbar, Typography, List } from '@mui/material'
-
-import React from 'react'
+import { Drawer, ListItem, ListItemText, Toolbar, Typography, List, useMediaQuery, IconButton, useTheme, AppBar } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu';
+import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 const DashboardLayout = () => {
     const location = useLocation()
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+    const [mobileOpne, setMObileOpen] = useState(false)
 
+    const handleMobileToggle = () => {
+        setMObileOpen(!mobileOpne)
+    }
     const routes = [
         { text: 'Home', path: 'home' },
         { text: 'Application Status', path: 'application-status' },
@@ -17,8 +23,29 @@ const DashboardLayout = () => {
     return (
         <div>
 
+            {
+                isMobile && (
+                    <AppBar position='fixed' sx={{ zIndex: theme.zIndex.drawer + 1 }}>
+                        <Toolbar>
+                            <IconButton
+                                color='inherit'
+                                edge='start'
+                                onClick={handleMobileToggle}
+                                sx={{ mr: 2 }}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Typography>Dashboard</Typography>
+                        </Toolbar>
+
+                    </AppBar>
+                )
+            }
+
             <Drawer
-                variant='permanent'
+                variant={isMobile ? 'temporary' : 'permanent'}
+                open={isMobile ? mobileOpne : true}
+                onClose={handleMobileToggle}
                 anchor='left'
                 sx={{
                     width: 240,
