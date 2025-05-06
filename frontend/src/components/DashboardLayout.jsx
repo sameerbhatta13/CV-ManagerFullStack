@@ -64,17 +64,13 @@ const DashboardLayout = () => {
                         <ListItem button key={route.text} component={Link} to={route.path}
                             sx={{
                                 backgroundColor: location.pathname.includes(route.path) ? 'rgba(10, 10, 0, 0.08)' : 'transparent',
-
-
                             }}
                         >
                             <ListItemText primary={route.text} />
                         </ListItem>
                     ))}
                 </List>
-
             </Drawer>
-
         </div >
     )
 }
