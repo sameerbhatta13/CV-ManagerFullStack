@@ -50,13 +50,13 @@ exports.updateCV = asyncHandler(async (req, res) => {
         const data = await CV.findByIdAndUpdate(req.params.id, {
             ...req.body, file: file
         }, { new: true })
-        res.status('200').json(new ApiResponse('cv is updated successfully', data))
+        res.status(200).json(new ApiResponse('cv is updated successfully', data))
     }
     else {
         const data = await CV.findByIdAndUpdate(req.params.id, { ...req.body }, {
             new: true
         })
-        res.status('200').json(new ApiResponse('cv is updated successfully', data))
+        res.status(200).json(new ApiResponse('cv is updated successfully', data))
     }
 })
 
