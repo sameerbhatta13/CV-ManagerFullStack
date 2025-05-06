@@ -9,7 +9,9 @@ const Assessment = () => {
     const [open, setOpen] = useState(false)
     const [cvList, setCVList] = useState([])
     const [id, setId] = useState('')
-    const [assess, setAssess] = useState(null)
+    const [assess, setAssess] = useState({
+        image: null
+    })
 
     console.log("first", assess)
     console.log('first', id)
@@ -30,8 +32,7 @@ const Assessment = () => {
     const updateCV = async (e) => {
         e.preventDefault()
         const formData = new FormData()
-        formData.append('assessment', assess.assessment)
-        console.log('fileData', formData)
+        formData.append('image', assess.image)
         try {
             const update = await axios.put(`${api_url}/cv/${id}`, formData, {
                 headers: {
@@ -39,6 +40,8 @@ const Assessment = () => {
                 }
             })
             console.log("file", update.data)
+            setOpen(false)
+            fetchCVList()
 
         } catch (error) {
             console.log(error)
@@ -48,7 +51,10 @@ const Assessment = () => {
     }
     const handleImageChnage = (e) => {
         const file = e.target.files[0]
-        setAssess(file)
+        setAssess((prev) => ({
+            ...prev,
+            image: file
+        }))
 
     }
 
@@ -138,7 +144,7 @@ const Assessment = () => {
                         <form action="" onSubmit={updateCV}>
                             <input type="file"
                                 onChange={handleImageChnage}
-                                name='assessment'
+                                name='image'
                                 className='border-2 my-4 p-1 rounded-lg ' />
 
                             <Button type='submit' variant='contained' >Submit</Button>

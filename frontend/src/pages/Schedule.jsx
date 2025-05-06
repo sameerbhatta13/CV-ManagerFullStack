@@ -18,11 +18,11 @@ const Schedule = () => {
     return (
 
 
-        <div className='flex flex-row gap-16'>
+        <div className='flex flex-row gap-14'>
 
             {interviewList?.map((item, index) => {
                 return (
-                    <Card sx={{ maxWidth: 245 }} key={index}>
+                    <Card sx={{ maxWidth: 350, maxHeight: '90%' }} key={index}>
 
                         <CardMedia
                             sx={{ height: 140 }}
@@ -42,9 +42,15 @@ const Schedule = () => {
 
 
                         <CardContent>
+                            <Typography sx={{ mb: 2 }}>
+                                <b>Interview Schedule Details</b>
+                            </Typography>
 
                             <Typography variant='body2' sx={{ color: 'text.secondary' }}>
                                 <h1><b>Candidate Name:</b> {item?.candidate?.name}</h1>
+                                <h1><b>Candidate phone:</b> {item?.candidate?.phone}</h1>
+                                <h1><b>Candidate email:</b> {item?.candidate?.email}</h1>
+                                <h1><b>Candidate technology:</b> {item?.candidate?.technology}</h1>
                                 <h1 > <b>Interview At:</b> {item?.interviewAt?.replace('T', ' ').replace('Z', ' ').slice(0, 16)}</h1>
                                 <h1 ><b>Interviewer Name:</b> {item?.interviewer?.name}</h1>
                             </Typography>
@@ -54,9 +60,6 @@ const Schedule = () => {
             })
             }
         </div>
-
-
-
     )
 }
 

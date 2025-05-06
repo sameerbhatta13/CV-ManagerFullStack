@@ -15,16 +15,18 @@ const Status = () => {
     const [selectedRow, setSelectedRow] = useState(null)
     const row = cvlist?.data
 
+
     const rowData = row?.filter((item) => {
         return item?.applicationStatus === activeStatus
     })
 
 
-    const status = ['Active', 'shortlisted', 'interviewed', 'Hired', 'Rejected']
+    const status = ['Active', 'shortlisted', 'First_Interview', 'Second_Interview', 'Hired', 'Rejected']
     const color = {
         Active: '#4caf50',
         shortlisted: '#2196f3',
-        interviewed: '#ff9800',
+        First_Interview: '#ff9800',
+        Second_Interview: '#ff9800',
         Hired: '#9c27b0',
         Rejected: '#f44336'
     }
@@ -96,7 +98,7 @@ const Status = () => {
             </div>
             <div>
 
-                <Paper>
+                <Paper sx={{ width: '100%', overflowX: 'auto' }}>
                     <DataGrid
                         rows={rowData}
                         disableColumnMenu
@@ -111,7 +113,7 @@ const Status = () => {
             </div>
             {
                 open && (
-                    <ModalUI setOpen={setOpen} open={open} selectedRow={selectedRow} />
+                    <ModalUI setOpen={setOpen} open={open} selectedRow={selectedRow} data={rowData} />
                 )
             }
         </div>

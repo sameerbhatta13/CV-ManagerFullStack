@@ -4,7 +4,7 @@ import { api_url } from '../../config'
 import axios from 'axios'
 
 
-const ModalUI = ({ setOpen, open, selectedRow }) => {
+const ModalUI = ({ setOpen, open, selectedRow, data }) => {
     const [list, setList] = useState([])
     const [id, setId] = useState()
 
@@ -72,7 +72,7 @@ const ModalUI = ({ setOpen, open, selectedRow }) => {
                 >
                     <Box sx={{ ...style, width: 400 }}>
                         <div className='flex flex-col my-5'>
-                            <h1 className='text-2xl underline text-red-400'>First Interview</h1>
+
                             <form action="" onSubmit={postInteview} className='flex flex-col'>
                                 <label htmlFor="" className='font-bold my-3'>Select Interviewer</label>
                                 <select className='border-2 p-2' name='interviewer' onChange={handelChange}>
